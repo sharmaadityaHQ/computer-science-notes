@@ -1,4 +1,4 @@
-Scalabiility is the ability of a machine to handle more requests.
+Scalability is the ability of a machine to handle more requests.
 
 ## Horizontal Scaling
 
