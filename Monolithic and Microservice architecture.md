@@ -16,6 +16,7 @@
 
 ### Disadvantages
 
+- Single point of failure even if horizontally scaled because same entire system is deployed on various machines.
 - Hard to manage a complex system of code within one application (while scaling).
 - Hard to implement changes in a large and complex application with tight coupling. Any code change affects the whole system so it has to be thoroughly coordinated.
 - Cannot scale components independently, only the whole application.
