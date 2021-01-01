@@ -49,6 +49,7 @@
 - Small team
 - Simple application (do not demand much business logic, scalability and flexibility)
 - Quick launch and no Microservices expertise
+- Service requires very high efficiency where network calls should be avoided as much as possible.
 
 ## When Microservices?
 
