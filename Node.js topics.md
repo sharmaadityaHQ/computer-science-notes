@@ -1,4 +1,5 @@
 Nodejs is not Javascript. Nodejs is a runtime environment for Javascript, an environment to run Javascript and not a programming language.
+You can write all the modern ES6-7-8-9 JavaScript that your Node.js version supports.
 
 ### Streams
 
