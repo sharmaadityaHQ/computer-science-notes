@@ -19,3 +19,10 @@ My notes for various Computer Science subjects.
 - [x] Capacity Estimation
 - [x] Single Point of Failure
 - [x] NoSQL databases
+
+### JavaScript
+
+- [x] How JavaScript works?
+### Technical talks
+
+- [x] State Management with MobX
