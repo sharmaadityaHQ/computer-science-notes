@@ -23,6 +23,7 @@ My notes for various Computer Science subjects.
 ### JavaScript
 
 - [x] How JavaScript works?
-### Technical talks
+### My technical talks
 
 - [x] State Management with MobX
+- [x] Contributing to Python Software Foundation
