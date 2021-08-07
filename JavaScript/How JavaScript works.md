@@ -9,7 +9,7 @@
         ![](../assets/execution-context.png)
 
 - Execution context is created in 2 phases:-  
-    1. Memory Allocation Phase - Memory is allocated to all variables and functions. key as variable name and value as undefined in case of variables and key as function name and value as code of the function in case of functions.
+    1. Memory Allocation Phase - Memory is allocated to all variables and functions. `key` as variable name and `value` as undefined in case of variables and `key` as function name and `value` as code of the function in case of functions.
     2. Code Execution Phase - Value of variables is allocated in memory and code is executed in code component. In case of function invocations a new execution context is created. This new execution context is deleted after the function returns and its execution is complete. Global execution context is also deleted when the code execution is complete.
 
 - Call Stack (execution context stack/program stack/control stack/runtime stack/machine stack) maintains the order of execution of execution contexts.
@@ -20,3 +20,8 @@
 - Hoisting
     1. Process where compiler allocates memory for variable and function declarations before the execution of the code.
     2. Declarations made using `let` and `const` are not initialized as part of hoisting. Until the line in which they are initialized is executed, any code that accesses these variables will throw an exception.
+
+- window object
+    1. `window` is a global object which is created by the JS engine along with the global execution context.
+    2. A `this` variable is also created which points to the global object (`window` in case of browsers). (this === window)
+    3. All variables and functions created in the global scope get attached to the `window` object. Eg. A variable `a` can be accessed as `window.a` or `a` or `this.a`.
