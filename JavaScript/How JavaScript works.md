@@ -36,7 +36,7 @@
     4. If JS engine does not find a variable in the local memory then it searches in the next level of scope chain (chain of lexical environments).
 
 - Temporal Dead Zone (`TDZ`), `let` and `const`
-    1. Time from when a `let` declaration is hoisted till the time it is initialized.
+    1. Time from when a `let`/`const` declaration is hoisted till the time it is initialized.
     2. Accessing a `let` variable before the initialization results in a `ReferenceError`.
 
     ```javascript
@@ -87,7 +87,7 @@
     func();
     ```
 
-- Closure
+- Closures
     1. A function along with its lexical environment is called closure. When we return a function a closure is returned.
 
     ```javascript
@@ -103,11 +103,122 @@
     ```
 
     2. Closures are created every time a function is created, at function creation time.
-    3. Common uses of closures
-    - Module Design Pattern
-    - Currying
-    - Functions like `once`
-    - memoize
-    - maintaining state in `async` world
-    - setTimeout
-    - Iterators
+    3. Function arguments are always passed by value. All objects interact with reference.
+    4. Common uses of closures
+        - Module Design Pattern
+        - Currying
+        - Functions like `once`
+        - memoize
+        - maintaining state in `async` world
+        - setTimeout
+        - Iterators
+    5. Closures might lead to over consumption of memory as every time a clousre is formed it consumes a lot of memory and those variables are not garbage collected. It can also lead to memory leaks, freeze browser if not handled properly.
+    6. Garbage collector is a part of JS engine which frees up the unutilized memory. Modern JS engines smartly garbage collect code which is not being used.
+    7. Closures can be used for data privacy/data hiding.
+
+    ```javascript
+    function counter(){
+        var count = 0; // count is a private variable
+        return function incrementCounter(){
+            count++;
+            console.log(count);
+        }
+    }
+    var counter1 = counter();
+    counter1();
+    ```
+
+- Functions
+    1. Function Statement/Function Declaration
+
+    ```javascript
+        function a(){
+            console.log('called a');
+        }
+        a();
+    ```
+
+    2. Function Expression
+
+    ```javascript
+        var b = function(){
+            console.log('called b');
+        }
+        b();
+    ```
+
+    Function expression and function statement behave differently during hoisting. Function expression is similar to normal variable and is assigned `undefined` until the function expression code is executed.
+
+    3. Anonymous Function - Do not have a name, can be used as values in function expressions.
+    4. Named Function Expression
+
+    ```javascript
+        var b = function xyz(){
+            console.log('called b');
+        }
+        xyz(); // ReferenceError: xyz is not defined
+        b(); // called b
+    ```
+
+    5. Parameters are the values that a function can receive.
+
+    ```javascript
+        function a(param1, param2){
+            console.log('called a');
+        }
+        a();
+    ```
+
+    6. Arguments are the values that are passed to a function.
+
+    ```javascript
+        a(10, 20);
+    ```
+
+    7. First Class Functions - The ability to use functions as values, pass them to other functions and return them from a function.
+    8. Callback Function
+
+    ```javascript
+        function x(y){
+            /*
+                y is a callback function. It is passed to x
+                and is called sometime later in the program.
+            */
+        }
+        x(function y(){
+
+        })
+    ```
+    9. Event listeners and clousres
+
+    ```javascript
+        function addEventListeners() {
+            let count = 0;
+            document.getElementById('clickMe').addEventListener('click', function xyz(){
+                console.log('Click', count++);
+            });
+        }
+        addEventListeners();
+    ```
+
+    Event listeners are heavy and are removed as they form closure and take up memory.
+
+- Asynchronous JS and Event loop
+    1. Call stack is present inside the JS engine and can only execute 1 thing at a time.
+    2. Some frequently used Web API's :-
+        - setTimeout()
+        - DOM API's
+        - fetch()
+        - localStorage
+        - console
+        - location 
+
+    We can use web api's inside our JS code via the global object (`window` in case of browsers). Eg. `window.setTimeout()` or `setTimeout()`
+
+    3. Event loop continuously monitors the call stack and the callback queue. If call stack is empty and the callback queue has some function waiting to be exectuted then that function is pushed into the call stack.
+    4. Microtask queue is similar to callback queue but has higher priority. All callback functions which come through promises, mutation observer go to microtask queue. All other callbacks from setTimeout, DOM API's go to the callback queue.
+    5. Event loop will only pick tasks from callback queue once all tasks in the microtask queue are completed.
+    6. If the task in the callback queue does not get the chance to execute for a long time due to multiple tasks in the microtask queue then it is called starvation of the task inside callback queue.
+    7. Memory heap is the space where all variables and functions are assigned memory.
+
+
